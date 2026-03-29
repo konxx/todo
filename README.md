@@ -1,15 +1,19 @@
-# Todo Desk
+# 桃神自用
 
-一个原生 Windows 待办应用，保留现有界面风格和布局，但不再依赖 Shiny、浏览器窗口或 R 运行时。程序现在直接由 WinForms 桌面应用承载，默认无 Windows 边框，并提供系统托盘入口。
+一个原生 Windows 待办小工具，使用 WinForms 自绘界面实现，无浏览器窗口、无 R 运行时依赖。当前界面为无边框圆角样式，支持系统托盘、置顶和中英文切换，适合常驻桌面快速记录。
+
+说明：
+当前程序显示名为“桃神自用”，但可执行文件名和本地数据目录仍沿用 `TodoDesk`。
 
 ## 功能
 
 - 添加、完成、删除待办事项
 - 点击有备注的任务标题可展开或折叠备注
-- 中文 / English 双语切换
+- 中文 / English 切换
 - `Ctrl+N` 快捷键快速添加任务
 - 置顶状态切换
 - 右下角系统托盘支持显示、隐藏和退出
+- 列表时间显示为任务添加时间，勾选完成后不会修改
 - 本地数据保存到 `%APPDATA%\TodoDesk\tasks.json`
 - 设置保存到 `%APPDATA%\TodoDesk\settings.json`
 
@@ -18,7 +22,7 @@
 ```text
 desktop-host/
   Program.cs            程序入口和基础控件
-  Models.cs             数据模型和文案
+  Models.cs             数据模型、文案与配色
   Drawing.cs            圆角与窗口拖拽辅助
   TodoDeskForm.cs       主窗口
   TaskItemControl.cs    任务列表项控件
@@ -30,6 +34,9 @@ packaging/
   build-host.ps1        编译原生 exe
   build-installer.ps1   构建安装包
   TodoDesk.iss          Inno Setup 脚本
+build/
+  dev/                  默认开发输出
+  verify/               临时验证输出
 VERSION
 ```
 
@@ -39,7 +46,7 @@ VERSION
 .\launchers\start-dev.cmd
 ```
 
-该脚本会先编译 `TodoDesk.exe`，然后直接启动原生桌面程序。
+该脚本会先编译 `build\dev\TodoDesk.exe`，然后直接启动桌面程序。
 
 ## 打包安装程序
 
@@ -67,7 +74,7 @@ powershell -ExecutionPolicy Bypass -File .\packaging\build-installer.ps1
 
 ## 技术说明
 
-- UI：WinForms 自绘无边框窗口
+- UI：WinForms 自绘无边框圆角窗口
 - 持久化：JSON
 - 托盘：`NotifyIcon`
 - 打包：Inno Setup
