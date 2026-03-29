@@ -1,0 +1,26 @@
+# Build outputs
+/build/
+
+# Common .NET / Visual Studio artifacts
+/.vs/
+**/bin/
+**/obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs and local diagnostics
+*.log
+*.tmp
+*.temp
+
+# Windows Explorer / shell noise
+Thumbs.db
+Desktop.ini
+
+# Installer / packaging leftovers
+*.pdb
+*.cache
+*.bak
+*.orig
