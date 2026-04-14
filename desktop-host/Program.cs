@@ -90,7 +90,7 @@ namespace TodoDeskApp
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            UiDrawing.ConfigureHighQuality(e.Graphics);
 
             Rectangle bounds = ClientRectangle;
             bounds.Width -= 1;
@@ -100,6 +100,7 @@ namespace TodoDeskApp
             using (LinearGradientBrush backgroundBrush = new LinearGradientBrush(bounds, UiPalette.SurfaceBackground, UiPalette.SurfaceGlow, LinearGradientMode.Vertical))
             using (Pen borderPen = new Pen(BorderColor))
             {
+                borderPen.LineJoin = LineJoin.Round;
                 e.Graphics.FillPath(backgroundBrush, path);
                 e.Graphics.DrawPath(borderPen, path);
             }
@@ -141,7 +142,7 @@ namespace TodoDeskApp
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            UiDrawing.ConfigureHighQuality(e.Graphics);
 
             Rectangle bounds = ClientRectangle;
             bounds.Width -= 1;
@@ -152,6 +153,7 @@ namespace TodoDeskApp
             using (Pen borderPen = new Pen(Color.FromArgb(28, 255, 255, 255)))
             using (Font badgeFont = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point))
             {
+                borderPen.LineJoin = LineJoin.Round;
                 e.Graphics.FillPath(brush, path);
                 e.Graphics.DrawPath(borderPen, path);
                 TextRenderer.DrawText(

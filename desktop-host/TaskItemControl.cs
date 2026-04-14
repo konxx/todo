@@ -129,7 +129,7 @@ namespace TodoDeskApp
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            UiDrawing.ConfigureHighQuality(e.Graphics);
             e.Graphics.Clear(UiPalette.TaskListBackground);
 
             if (cardBounds.Width <= 0 || cardBounds.Height <= 0)
@@ -218,6 +218,7 @@ namespace TodoDeskApp
             using (SolidBrush fillBrush = new SolidBrush(cardColor))
             using (Pen borderPen = new Pen(borderColor))
             {
+                borderPen.LineJoin = LineJoin.Round;
                 graphics.FillPath(fillBrush, path);
                 graphics.DrawPath(borderPen, path);
             }
@@ -342,6 +343,7 @@ namespace TodoDeskApp
             using (Pen borderPen = new Pen(UiPalette.Divider))
             using (Font noteFont = new Font("Segoe UI", 7.3F, FontStyle.Regular, GraphicsUnit.Point))
             {
+                borderPen.LineJoin = LineJoin.Round;
                 graphics.FillPath(noteBrush, path);
                 graphics.DrawPath(borderPen, path);
                 TextRenderer.DrawText(

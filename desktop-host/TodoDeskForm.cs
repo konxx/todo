@@ -64,7 +64,7 @@ namespace TodoDeskApp
                 Dock = DockStyle.Fill,
                 BackColor = UiPalette.SurfaceBackground,
                 BorderColor = UiPalette.SurfaceBorder,
-                CornerRadius = 18
+                CornerRadius = 22
             };
             Controls.Add(surfacePanel);
 
@@ -211,7 +211,7 @@ namespace TodoDeskApp
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
-            UiDrawing.ApplyRoundedRegion(this, 24);
+            UiDrawing.ApplyRoundedRegion(this, 28);
         }
 
         protected override void Dispose(bool disposing)
@@ -227,7 +227,7 @@ namespace TodoDeskApp
 
         private void HeaderPanel_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            UiDrawing.ConfigureHighQuality(e.Graphics);
             using (Pen borderPen = new Pen(UiPalette.HeaderBorder))
             {
                 Control header = (Control)sender;
@@ -702,7 +702,7 @@ namespace TodoDeskApp
 
         private void TopmostButton_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            UiDrawing.ConfigureHighQuality(e.Graphics);
             Rectangle bounds = topmostButton.ClientRectangle;
             float centerX = bounds.Left + (bounds.Width / 2F);
             float centerY = bounds.Top + (bounds.Height / 2F);
@@ -721,7 +721,7 @@ namespace TodoDeskApp
         {
             Button button = (Button)sender;
             bool hot = button.ClientRectangle.Contains(button.PointToClient(Cursor.Position));
-            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            UiDrawing.ConfigureHighQuality(e.Graphics);
             int size = Math.Max(8, Math.Min(button.ClientSize.Width, button.ClientSize.Height) - 14);
             int centerX = button.ClientSize.Width / 2;
             int centerY = button.ClientSize.Height / 2;

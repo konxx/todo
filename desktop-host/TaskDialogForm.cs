@@ -44,7 +44,7 @@ namespace TodoDeskApp
                 Dock = DockStyle.Fill,
                 BackColor = UiPalette.SurfaceBackground,
                 BorderColor = UiPalette.SurfaceBorder,
-                CornerRadius = 18
+                CornerRadius = 22
             };
             Controls.Add(surfacePanel);
 
@@ -145,7 +145,7 @@ namespace TodoDeskApp
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
-            UiDrawing.ApplyRoundedRegion(this, 22);
+            UiDrawing.ApplyRoundedRegion(this, 26);
         }
 
         private TextBox CreateInputBox(bool multiline)
